@@ -16,7 +16,7 @@ Each level will have a different order of button blink, the player must follow t
 If all of the buttons are correctly pressed, the player advances to the next level.
 
 ## Website link
-<a href="https://chebrolutejaswi.github.io/Simon-game/">Play </a>a game of simon!
+<a href="https://chebrolutejaswi.github.io/Simon-Game/">Play </a>a game of simon!
 
 ## How to run 
 <li>Download the code.
