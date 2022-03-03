@@ -6,14 +6,15 @@ var userClickedPattern = [];
 
 var started = false;
 var level = 0;
+var bestScore= 0;
 
-$(document).keypress(function() {
-    if (!started) {
-      $("#level-title").text("Level " + level); //replaces heading with level-0
-      nextSequence();
-      started = true;
-    }
-});
+function startfunction(){
+  if (!started) {
+          $("#level-title").text("Level " + level); //replaces heading with level-0
+          nextSequence();
+          started = true;
+  }
+}
 
 /*
  to make game work with a click
@@ -67,7 +68,7 @@ function checkAnswer(currentLevel) {
     } else {
       playSound("wrong");
       $("body").addClass("game-over");
-      $("#level-title").text("Game Over-Press Any Key to Restart");
+      $("#level-title").text("Game Over!Press power button to restart.");
       setTimeout(function () {
         $("body").removeClass("game-over");
       }, 500);
@@ -81,6 +82,11 @@ function checkAnswer(currentLevel) {
 function nextSequence() {
   level++;
   $("#level-title").text("Level " + level);
+  if (bestScore<level)
+  {
+    bestScore=level;
+  }
+  $("#bestscore").text(bestScore);
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
@@ -105,68 +111,4 @@ function startOver() {
   // userClickedPattern = [];
   started = false;
 }
-
-
-
-// -------------------Concept covered--------------------
-
-/*
-before(): gets added before opening tag
-after(): gets added after closing tag
-prepend(): gets added before context/ after opening tag
-append(): gets added after context/before closing tag
-
-these are really useful in placing newly added html element.
-*/
-
-/*
-animations:
-
-$("button").on("click",function(){
-  $("h1").hide();   hides heading
-  $("h1").fadeOut();  first reduces opacity then hides
-  $("h1").toggle();  hide-unhide-hide
-  $("h1").fadeIn();
-  $("h1").fadeToggle();
-  $("h1").slideDown();
-  $("h1").slideUp();
-  $("h1").slideToggle();
-});
-*/
-
-/*
-adding event listeners:
-
-$("button").click(function(){
-  $("h1").css("color","purple");
-});
-$("input").keypress(function(event){
-  $("h1").text(event.key);
-});
-$("h1").on("mouseover",function(){
-  $("h1").css("color","green");
-});
-*/
-
-/*
-$("h1").addClass("big-title shadow");
-$("button").text("<em>hey<em>"); //will print <em>hey<em> on button
-$("button").html("<em>hey<em>"); // will print only hey in emphasied form on buttons
-
-$("img").attr("src");//manipulates attribute values.
-$("a").attr("href","www...") // sets an attribute
-*/
-
-/*
-/*
-  ready says once our page is loaded then apply the javascript.
-  using ready is very important if we are linking js at head part of html.
-  if we wre linking at body part, it's not needed.
-  jQuery("hi") or $("hi") can be used
-  $("button"), there is no diff between select and selectall
-
-  $(document).ready(function(){
-  $("h1").css("color","red"); //$("h1").css("color")->returns the value of it.(i.e. black)
-});
-*/
 
